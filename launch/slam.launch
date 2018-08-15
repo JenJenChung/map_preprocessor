@@ -1,0 +1,15 @@
+<launch>
+  <node pkg="gmapping" type="slam_gmapping" name="gmapping">
+    <remap from="scan" to="base_scan"/>
+    <param name="odom_frame" value="odom"/>
+    <param name="base_frame" value="base_link"/>
+    <param name="xmin" value="-100"/>
+    <param name="ymin" value="-100"/>
+    <param name="xmax" value="100"/>
+    <param name="ymax" value="100"/>
+  </node>
+  
+  <include file="$(find map_preprocessor)/launch/move_base.launch"/>
+  <node pkg="simple_navigation_goals" type="map_navigation_client" name="map_goal_client" output="screen"/>
+  <node pkg="map_preprocessor" type="planner_recover" name="planner_recover" output="screen"/>
+</launch>

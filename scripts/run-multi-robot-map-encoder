@@ -1,0 +1,21 @@
+#!/bin/bash
+
+N_ROBOTS=$1
+
+my_pid=$$
+echo "My process ID is $my_pid"
+
+source `which virtualenvwrapper.sh`
+workon marl-coop-explore-py3
+
+echo "Launching autoencoder stack for $N_ROBOTS robots..."
+for i in `seq 0 $[N_ROBOTS-1]`;
+do
+  roslaunch map_preprocessor autoencoder.launch robot_name:=robot_$i map_topic:=merged_map odom_topic:=global_odom &
+  pid="$pid $!"
+  sleep 2s
+done
+
+trap "echo Killing all processes.; kill -2 TERM $pid; exit" SIGINT SIGTERM
+
+sleep 24h

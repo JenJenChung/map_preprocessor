@@ -1,0 +1,4 @@
+maxpool: 1
+model_name: map_ae_256x256_selu_20_L1
+directory_name: /home/jenjen/catkin_ws/src/map_preprocessor/src/models/trained_models/
+frame_size: 256

@@ -1,0 +1,4 @@
+<launch>
+  <rosparam file="$(find map_preprocessor)/scripts/map_writer_params.yaml" command="load"/>
+  <node pkg="map_preprocessor" type="map_writer" name="map_writer" output="screen"/>
+</launch>

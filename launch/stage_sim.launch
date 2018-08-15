@@ -1,0 +1,7 @@
+<launch>
+  <arg name="world_file" default="willow"/>
+  <!-- Launch world -->
+  <node pkg="stage_ros" type="stageros" name="simulator" args="$(find map_preprocessor)/worlds/$(arg world_file).world">
+    <remap from="cmd_vel" to="/robot/cmd_vel"/>
+  </node>
+</launch>

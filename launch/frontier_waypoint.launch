@@ -1,0 +1,8 @@
+<launch>
+  <node pkg="frontier_waypoint" type="frontier_waypoint" respawn="false" name="frontier_waypoint" output="screen">
+    <rosparam file="$(find map_preprocessor)/scripts/frontier_waypoint_params.yaml" command="load"/>
+  </node>
+  <node pkg="frontier_waypoint" type="frontier_map" respawn="false" name="frontier_map" output="screen">
+    <rosparam file="$(find map_preprocessor)/scripts/frontier_costmap_params.yaml" command="load" ns="frontier_map"/>
+  </node>
+</launch>

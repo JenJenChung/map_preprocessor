@@ -1,0 +1,13 @@
+<launch>
+  <arg name="robot_name" default="robot_0"/>
+  <arg name="map_topic" default="map"/>
+  <arg name="odom_topic" default="odom"/>
+  
+  <group ns="$(arg robot_name)">
+    <rosparam file="$(find map_preprocessor)/scripts/autoencoder_params.yaml" command="load"/>
+    <param name="map_topic" value="$(arg map_topic)"/>
+    <param name="odom_topic" value="$(arg odom_topic)"/>
+    <node pkg="map_preprocessor" type="local_map_state" name="local_map_state" output="screen"/>
+    <node pkg="map_preprocessor" type="map_encode.py" name="map_encode" output="screen"/>
+  </group>
+</launch>
